@@ -1,0 +1,12 @@
+Modelling tail-dependence with stocks and financial news information
+
+copula tail-dependence modeling with flexible marginal distributions is widely used in
+financial time series. most of the available copula approaches for estimating
+tail-dependence are restricted within certain types of bivariate copulas due to
+computational complexity. we propose a general bayesian approach for jointly modeling
+high-dimensional tail-dependence for financial returns and related news information.
+
+Our method allows for variable selection among the key words in news in the copula
+tail-dependence parameters. We apply a novel sampling technique into the posterior
+inference where the likelihood function is estimated from a random subset of the data,
+resulting in substantially fewer density MCMC evaluations.

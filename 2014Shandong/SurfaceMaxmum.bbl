@@ -1,0 +1,71 @@
+\begin{thebibliography}{13}
+\newcommand{\enquote}[1]{``#1''}
+\expandafter\ifx\csname natexlab\endcsname\relax\def\natexlab#1{#1}\fi
+
+\bibitem[{Bergstra and Bengio(2012)}]{bergstra2012random}
+Bergstra, J. and Bengio, Y. (2012), \enquote{Random search for hyper-parameter
+  optimization,} \textit{The Journal of Machine Learning Research}, 13,
+  281--305.
+
+\bibitem[{Brochu et~al.(2010)Brochu, de~Freitas, and
+  Hoffman}]{brochu2010hedging}
+Brochu, E., de~Freitas, N., and Hoffman, M. (2010), \enquote{Hedging Strategies
+  for Bayesian Optimization,} Tech. rep.
+
+\bibitem[{Cox and John(1997)}]{cox1997sdo}
+Cox, D.~D. and John, S. (1997), \enquote{SDO: A statistical method for global
+  optimization,} in \textit{Multidisciplinary design optimization: state of the
+  art}, SIAM, Philadelphia, pp. 315--329.
+
+\bibitem[{Jones(2001)}]{jones2001taxonomy}
+Jones, D.~R. (2001), \enquote{A taxonomy of global optimization methods based
+  on response surfaces,} \textit{Journal of global optimization}, 21, 345--383.
+
+\bibitem[{Jones et~al.(1993)Jones, Perttunen, and
+  Stuckman}]{jones1993lipschitzian}
+Jones, D.~R., Perttunen, C.~D., and Stuckman, B.~E. (1993),
+  \enquote{Lipschitzian optimization without the Lipschitz constant,}
+  \textit{Journal of Optimization Theory and Applications}, 79, 157--181.
+
+\bibitem[{Jones et~al.(1998)Jones, Schonlau, and Welch}]{jones1998efficient}
+Jones, D.~R., Schonlau, M., and Welch, W.~J. (1998), \enquote{Efficient global
+  optimization of expensive black-box functions,} \textit{Journal of Global
+  optimization}, 13, 455--492.
+
+\bibitem[{Kushner(1964)}]{kushner1964new}
+Kushner, H.~J. (1964), \enquote{A new method of locating the maximum point of
+  an arbitrary multipeak curve in the presence of noise,} \textit{Journal of
+  Fluids Engineering}, 86, 97--106.
+
+\bibitem[{Li and Villani(2013)}]{li2013efficient}
+Li, F. and Villani, M. (2013), \enquote{Efficient {B}ayesian Multivariate
+  Surface Regression,} \textit{Scandinavian Journal of Statistics}, 40,
+  706--723.
+
+\bibitem[{Lizotte(2008)}]{lizotte2008practical}
+Lizotte, D.~J. (2008), \textit{Practical bayesian optimization}, University of
+  Alberta.
+
+\bibitem[{Mockus(1994)}]{mockus1994application}
+Mockus, J. (1994), \enquote{Application of Bayesian approach to numerical
+  methods of global and stochastic optimization,} \textit{Journal of Global
+  Optimization}, 4, 347--365.
+
+\bibitem[{Mockus et~al.(1978)Mockus, Tiesis, and
+  Zilinskas}]{mockus1978application}
+Mockus, J., Tiesis, V., and Zilinskas, A. (1978), \enquote{The application of
+  Bayesian methods for seeking the extremum,} \textit{Towards Global
+  Optimization}, 2, 2.
+
+\bibitem[{Sasena(2002)}]{sasena2002flexibility}
+Sasena, M.~J. (2002), \enquote{Flexibility and efficiency enhancements for
+  constrained global design optimization with kriging approximations,} Ph.D.
+  thesis, University of Michigan.
+
+\bibitem[{Villemonteix et~al.(2009)Villemonteix, Vazquez, and
+  Walter}]{villemonteix2009informational}
+Villemonteix, J., Vazquez, E., and Walter, E. (2009), \enquote{An informational
+  approach to the global optimization of expensive-to-evaluate functions,}
+  \textit{Journal of Global Optimization}, 44, 509--534.
+
+\end{thebibliography}

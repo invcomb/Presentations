@@ -1,0 +1,881 @@
+\documentclass{beamer}
+
+%% Fonts and encodings
+\usepackage{multicol}
+\usepackage{mathabx}
+\usepackage[scaled]{helvet}
+\usepackage{color}
+\usepackage{lmodern}
+\usepackage{eulervm}
+\usepackage{wasysym}
+\usefonttheme[onlymath]{serif}
+\usefonttheme{professionalfonts}
+\usefonttheme{structurebold}
+
+\usepackage{bm}
+\usepackage[utf8x]{inputenc}
+\usepackage{booktabs}
+\usepackage{natbib}
+%% Color & Theme
+\definecolor{SUblue}{RGB}{0,0,180}
+\usecolortheme[RGB={0,0,180}]{structure}
+\usetheme{Boadilla}
+\setbeamertemplate{navigation symbols}{}
+\setbeamertemplate{itemize items}[circle]
+\setbeamertemplate{enumerate items}[circle]
+
+\setbeamerfont{title}{size=\large}
+\setbeamerfont{frametitle}{size=\normalsize}
+\setbeamerfont{framesubtitle}{size=\small, shape =$\color{violet}{\looparrowdownright}~$}
+\setbeamercolor{title}{fg=white, bg= SUblue!75!green}
+\setbeamercolor{framesubtitle}{fg=violet}
+
+\title[Dynamical Stocks and Text Modeling]{{\textbf{Bayesian  Modeling Tail-Dependence \\\emph{of}\\
+      Stock Returns and News Sentiment with Copulas}}}
+
+
+
+\author[Feng Li]{\includegraphics[height=2cm]{cufelogo}\\
+  \vspace{0.5cm}\textbf{Feng Li}}
+\institute[SAM.CUFE.EDU.CN]{\footnotesize{\textbf{School of Statistics and
+      Mathematics\\ Central University of Finance and Economics}}}
+\date{}
+
+\begin{document}
+
+% \begin{frame}[plain]
+%   \includegraphics[width=\textwidth]{FERM2014AD}
+% \end{frame}
+
+
+%% Title page
+\begin{frame}[plain]
+  \addtocounter{framenumber}{-1}
+  \titlepage
+  \tiny{Revised on \today}
+\end{frame}
+
+%% Outline
+\section*{Outline}
+\begin{frame}
+  \frametitle{Outline}
+  \addtocounter{framenumber}{-1}
+  \tableofcontents
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% The main slides
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Stock returns and text information}
+\begin{frame}
+  \frametitle{The daily stock returns for Alibaba}
+  \begin{figure}
+    \centering
+    \includegraphics[height=0.8\textheight]{plot/Alibaba-Stock-Price.png}
+  \end{figure}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Text information related to Alibaba}
+  \begin{figure}
+    \centering
+    \includegraphics[height=0.7\textheight]{plot/Caixin.png}
+  \end{figure}
+
+  \begin{itemize}
+  \item 647 new articles about Alibaba from Sep 23, 2014 to Sep 22, 2015.
+  \end{itemize}
+\end{frame}
+
+
+\begin{frame}
+  \frametitle{The evolution of topics in a sequentially organized
+    corpus of news}
+  \begin{figure}
+    \centering
+    \includegraphics[height=0.3\textheight]{plot/Sep-Oct-wordcloud.png}    \includegraphics[height=0.3\textheight]{plot/Nov-wordcloud.png}
+    \includegraphics[height=0.3\textheight]{plot/Dec-wordcloud.png}\\
+    \includegraphics[height=0.3\textheight]{plot/Jan-wordcloud.png}    \includegraphics[height=0.3\textheight]{plot/Feb-wordcloud.png}
+    \includegraphics[height=0.3\textheight]{plot/Mar-Apr-wordcloud.png}\\
+    \includegraphics[height=0.3\textheight]{plot/May-wordcloud.png}    \includegraphics[height=0.3\textheight]{plot/Jun-wordcloud.png}
+    \includegraphics[height=0.3\textheight]{plot/Jul-wordcloud.png}\\
+
+  \end{figure}
+\end{frame}
+
+\begin{frame}
+  % \frametitle{The stock market returns for two indices}
+  \begin{figure}
+    \includegraphics[width=0.45\textwidth]{plot/Alibaba-Stock-Price-R.png} \includegraphics[width=0.45\textwidth]{plot/Sen-Date.png}
+  \end{figure}
+\end{frame}
+
+\section{Individual modeling stock returns}
+
+\begin{frame}
+  \frametitle{Individual modeling the stock market returns}
+  \begin{figure}
+    \centering
+    %\includegraphics[height=0.8\textheight]{plot/BABACovPlot}
+    \includegraphics[height=0.4\textheight]{plot/BABACovPlot1}\\
+    \includegraphics[height=0.4\textheight]{plot/BABACovPlot2}
+
+    \caption{Covariates used to capture stock's changes}
+  \end{figure}
+\end{frame}
+
+
+
+\begin{frame}
+  \frametitle{Use smooth mixture of asymmetric student's {\em t} densities to model stock returns}
+  \begin{itemize}
+  \item The split-\emph{t} density is
+    \[
+      c \cdot \kappa \left( {\mu ,\phi ,v} \right)I\left( {y \leq \mu } \right) + c \cdot \kappa
+      \left( {\mu ,\lambda \phi ,v} \right)I\left( {y > \mu } \right),
+    \]
+    where $ \kappa \left( {\mu ,\phi ,v} \right) = \left( {\frac{v}
+        {{v + \frac{{\left( {y - \mu } \right)^2 }}
+            {{\phi ^2 }}}}} \right)^{\left( {v + 1} \right)/2} $ is the kernel of student \emph{t}
+    density and $c$ is the normalization constant.
+
+  \item  Each of the four parameters $\mu,\phi,\lambda$ and $\nu$ are connected
+    to covariates as
+    % \begin{split}
+    %   \mu & = \beta_{\mu0}+x_{t}'\beta_{\mu} \\
+    %   \ln\phi & =  \beta_{\phi0}+x_{t}'\beta_{\phi} \\
+    %   \ln\lambda & =  \beta_{\lambda0}+x_{t}'\beta_{\lambda}\\
+    %   \ln\nu & =  \beta_{\nu0}+x_{t}'\beta_{\nu}
+    % \end{split}
+    \[
+      \begin{split}
+        \mu  &= \beta _{\mu 0}  + x_t '\beta _\mu   \hfill \\
+        \ln \phi  &= \beta _{\phi 0}  + x_t '\beta _\phi   \hfill \\
+        \ln \lambda & = \beta _{\lambda 0}  + x_t '\beta _\lambda   \hfill \\
+        \ln v &= \beta _{v0}  + x_t '\beta _v  \hfill \\
+      \end{split}
+    \]
+
+    but any smooth link function can equally well be used in the MCMC
+    methodology.
+  \item This make it possible e.g. to have the degrees of freedom smoothly varying over
+    covariate space; to capture skewness and excess kurtosis with the components.
+  \item \emph{Common} components if $\beta _\mu=\beta _\phi=\beta _\lambda=\beta _v$, else
+    \emph{separate} components.
+  \end{itemize}
+\end{frame}
+
+\section{Individual modeling text information}
+
+
+\begin{frame}
+  \frametitle{Individual modeling text information}
+
+  \begin{itemize}
+  \item We obtain full articles for Alibaba Inc. from financial news site
+    {\color{blue} \texttt{caixin.com}} with web scraping techniques. Covariates
+    used in Poison model are financial key words appeared in those articles.
+
+
+    \begin{figure}
+      \centering
+      \includegraphics[width=0.95\textwidth]{plot/TextsCovs-New}
+      % \includegraphics[height=0.8\textheight]{plot/TextsCovs}
+      \caption{Covariates used to capture stock's changes}
+    \end{figure}
+  \end{itemize}
+
+\end{frame}
+
+
+% \begin{frame}
+%   \frametitle{Individual modeling text information}
+%   \begin{figure}
+%     \centering
+%     \includegraphics[height=0.8\textheight]{plot/TextsCovs}
+%     \caption{Covariates used to capture stock's changes}
+%   \end{figure}
+% \end{frame}
+
+
+\begin{frame}
+  \frametitle{Individual modeling text information}
+  \begin{itemize}
+  \item A corpus about Alibaba are built sorted by date and makrked with P/N/U.
+  \item The vocabulary consists of 703 key words.
+
+  \item We model the texts with \textbf{Poisson regression} for illustrative purpose.
+
+    \begin{equation*}
+      \Pr(X{=}k)= \frac{\lambda^k e^{-\lambda}}{k!},
+    \end{equation*}
+    where $\lambda = exp(x'\beta)$
+
+  \item This is an $n<p$ problem. An efficient Bayesian variable selection algorithm is
+    used.
+
+  \item Other types of models e.g. negative binomial regression
+    \color{blue}{\citep{villani2012generalized}}, dynamic topic models \color{blue}{\citep{blei2006dynamic}} are
+    possible.
+  \end{itemize}
+
+\end{frame}
+
+\section{The Poisson regression model}
+% \begin{frame}[allowframebreaks]
+%   \frametitle{Poisson distribution}
+%   \framesubtitle{Count type data}
+%   \begin{itemize}
+%   \item Let's think about this type of data
+%     \begin{itemize}
+%     \item How many days do you take for vacation?
+%     \item How often do you go to the gym per week?
+%     \item How often are you absent of the class per semester?
+%     \end{itemize}
+%   \item The characteristics
+%     \begin{itemize}
+%     \item The variables are nonnegative.
+%     \item The variables are discrete.
+%     \item Some are rare/infrequent counts.
+%     \end{itemize}
+
+%   \item What kind of distribution captures such phenomena?
+
+%   \item The probability mass function
+%     \begin{equation*}
+%       p(Y) = \frac{\mu^Ye^{-\mu}}{Y!}
+%     \end{equation*}
+%     for $y=0,1,2,...$ where $y$ is the occurrence of particular event and $Y!=
+%     Y\times(Y-1)\times(Y-2)\times...\times 1$ is the factorial.
+
+%   \item The Poisson distribution has the same mean and variance
+%     \begin{equation*}
+%       E(Y)=Var(Y)=\mu
+%     \end{equation*}
+
+%   \end{itemize}
+% \end{frame}
+
+\begin{frame}
+  \begin{figure}
+    \centering
+    \includegraphics[height=0.9\textheight]{plot/poisson}
+  \end{figure}
+\end{frame}
+
+\begin{frame}[allowframebreaks]
+  \frametitle{The Poisson model}
+
+  \begin{itemize}
+  \item We model the mean value (positive) of $Y_i$ with covariates $X_1$,
+    $X_2$,...,$X_k$
+    \begin{equation*}
+      \mu_i = E(Y_i)= exp (\beta_1 + \beta_2X_2
+      +...+\beta_kX_k)
+    \end{equation*}
+    or alternatively we write the model as
+    \begin{equation*}
+      p(y_i) = \frac{\mu_i^{y_i}e^{-\mu_i}}{y_i!},
+      ~\text{where}~ \mu_i = \beta_1 + \beta_2X_2 +...+\beta_kX_k
+    \end{equation*}
+    % \item \text{\textbf{why us exp()?}}
+  \item The interpretation of the model
+    \begin{itemize}
+    \item How frequently the event happens to $i$th observations on average?
+      \begin{equation*}
+        \mu_i = E(Y_i)= exp (\beta_1 + \beta_2X_2
+        +...+\beta_kX_k)
+      \end{equation*}
+
+    \item What is the probability the event happens exactly $y_i$ times to $i$th
+      observation?
+      \begin{equation*}
+        p(y_i) = \frac{\mu_i^{y_i}e^{-\mu_i}}{y_i!}
+      \end{equation*}
+
+    \item What is the probability the event happens at most $y_i$ times to $i$th
+      observation?
+
+      \begin{equation*}
+        \sum \nolimits_{l=0}^{y_i} \frac{\mu_i^{l}e^{-\mu_i}}{l!}
+      \end{equation*}
+
+    \item What is the probability the event happens at lest $y_i$ times to $i$th
+      observation?
+      \begin{equation*}
+        1- \sum \nolimits_{l=0}^{y_i} \frac{\mu_i^{l}e^{-\mu_i}}{l!}
+      \end{equation*}
+
+
+    \end{itemize}
+  \item Estimate the Poisson model with maximum likelihood method
+  \item The likelihood
+    \begin{equation*}
+      p(y_1,y_2,...y_n) = \prod \limits_{i=1}^np(y_i)
+    \end{equation*}
+  \item The log likelihood
+    \begin{equation*}
+      \begin{split}
+        \log p(y_1,y_2,...y_n) =& \sum \limits_{i=1}^n \log p(y_i) = \sum
+        \limits_{i=1}^n  \left[y_i log(u_i) -u_i -log(y_i!)\right]\\
+        & = \sum \limits_{i=1}^n  \left[ y_i (\beta_1 + \beta_2X_2
+          +...+\beta_kX_k) \right.\\
+        &\left.-\exp(\beta_1 + \beta_2X_2 +...+\beta_kX_k) -log(y_i!)\right]
+      \end{split}
+    \end{equation*}
+  \item Then maximize $log p(y_1,y_2,...y_n)$ with respect to $\beta_1,\beta_2,...,\beta_k$
+
+
+  \end{itemize}
+
+\end{frame}
+
+
+\begin{frame}
+  \frametitle{Is that enough?}
+
+  \begin{itemize}
+  \item Are there any correlations between news information and stock returns?
+  \item Does there exist a way to joint two models, say one is discrete and the other one
+    is continuous?
+
+  \item Can we find the co-movement between news and stocks?
+  \end{itemize}
+
+\end{frame}
+
+
+% \section{Introduction to copulas}
+\begin{frame}
+  \frametitle{Introduction to copulas}
+  \framesubtitle{What is a copula?}
+  \begin{itemize}
+  \item The word ``copula'' means \textbf{linking}.
+  \item \textbf{Sklar's theorem}
+
+    Let $H$ be a multi-dimensional distribution function with marginal
+    distribution functions $F_1(x_1),...,F_m(x_m)$. Then there exists a
+    function $C$ (\textbf{copula function}) such that
+    \begin{equation*}
+      \begin{split}
+        H(x_1,...,x_m)= & C(F_1(x_1),...,F_m(x_m))\\
+        =&C\left(\int_{-\infty}^{x_1}f(z_1)dz_1,...,\int_{-\infty}^{x_m}f(z_m)dz_m\right)=C(u_1,...,u_m).
+      \end{split}
+    \end{equation*}
+    Furthermore, if $F_i(x_i)$ are continuous, then $C$ is unique, and the derivative $c(u_1,...,u_m)= \partial^m C(u_1,...,u_m)/(\partial u_1...
+    \partial u_m)$ is the \textbf{copula density}.
+
+  \end{itemize}
+\end{frame}
+
+
+\begin{frame}
+  \frametitle{Measuring correlation and tail dependence}
+  \framesubtitle{Kendall's $\tau$ and tail-dependences}
+  \begin{itemize}
+  \item The \textbf{Kendall's $\tau$} can be written in terms of copula function:
+    \begin{equation*}
+      \begin{split}
+        \tau = & 4 \int \int F(x_1, x_2)dF(x_1,x_2)-1 = 4 \int \int C(u_1, u_2)dC(u_1,u_2)-1. \\
+      \end{split}
+    \end{equation*}
+
+  \item As well as the bivariate lower and upper \textbf{tail dependences}
+    \begin{equation*}
+      \begin{split}
+        \lambda_L = & \lim \limits_{u \to 0^{+}} Pr(X_1< F_1^{-1}(u)| X_2<F_2^{-1}(u))= \lim \limits_{u \to 0^{+}} \frac{C(u,u)}{u},\\
+        \lambda_U=&\lim \limits_{u \to 1^{-}} Pr(X_1> F_1^{-1}(u)|
+        X_2>F_2^{-1}(u))= \lim \limits_{u \to 1^{-}} \frac{1-C(u,u)}{1-u}.\\
+      \end{split}
+    \end{equation*}
+
+  \item Some facts:
+    \begin{itemize}
+    \item The Kendall's $\tau$ is invariant w.r.t. \textbf{strictly} increasing transformations.
+    \item For all copulas in the elliptical class (Gaussian, \emph{t},...),
+      $\tau = \frac{2}{\pi}arcsin(\rho)$.
+    \item The Gaussian copula has zero tail dependence.
+    \item The  student \texttt{t} copula has asymptotic upper tail dependence even for negative
+      and zero correlations. The tail dependence decreases when degrees of
+      freedom increases.
+    \end{itemize}
+  \end{itemize}
+\end{frame}
+
+\section{The covariate-contingent copula model}
+\begin{frame}
+  \frametitle{The covariate-contingent copula model}
+  \framesubtitle{The Joe-Clayton copula}
+  \begin{itemize}
+  \item The Joe-Clayton copula function
+    \[
+      \begin{split}
+        C(u,v,\theta,\delta)=&1-\left[1-\left\{\left(1-\bar u ^{\theta }\right)^{-\delta
+            }+\left(1-\bar v ^{\theta }\right)^{-\delta }-1\right\}^{-1/\delta
+          }\right]^{1/\theta }
+      \end{split}
+    \]
+    where $\theta \geq 1$, $\delta > 0$, $\bar u = 1-u$, $\bar v = 1-v$ .
+
+  \item Some properties:
+    \begin{itemize}
+    \item $\lambda_L=2^{-1/\delta}$ does not depend on $\lambda_U=2-2^{-1/\theta}$.
+    \item  $\tau=1- 4\int _0^{\infty} s\times(\varphi'(s))^2ds$ is calculated via Laplace transform.
+    \end{itemize}
+  \end{itemize}
+
+\end{frame}
+
+
+\begin{frame}
+  \frametitle{The covariate-contingent copula model}
+  \framesubtitle{The reparameterized copula model}
+  \begin{itemize}
+
+  \item \textbf{The motivation} i) The interpretation of correlation and tail-dependence.
+    ii) Dynamical modeling tail-dependence and correlation.
+
+  \item \textbf{Reparametrization}: We reparameterize copula as a function of
+    tail-dependence and Kendall's tau $C(\bm{u},\lambda_L,\tau)$.
+  \item \textbf{Applicable Copulas}: Any copula can be equally well used with such
+    reparameterization.
+
+    \begin{itemize}
+    \item \textbf{Joe-Clayton Copula}: lower tail-dependence and upper tail-dependence are
+      independent.
+
+    \item \textbf{Clayton Copula}: allow for modeling lower tail-dependence
+
+    \item \textbf{Gumbel Copula}: commonly used in extreme value theory.
+    \item \textbf{Multivariate \emph{t} copula}: elliptical copula allows for
+      tail-dependence with small df.
+    \end{itemize}
+
+  \end{itemize}
+\end{frame}
+
+\begin{frame}%[allowframebreaks]
+  \frametitle{The covariate-contingent copula model}
+  \framesubtitle{Connecting density features with covariates}
+
+  \begin{itemize}
+  \item All parameters are connected with covariates via known link function
+    $\varphi(\cdot)$, (identity, log, logit, probit,...)
+  \end{itemize}
+  \begin{center}
+    \begin{tabular}{lll}
+      \toprule
+      Components & Features & Linkage\\
+      \midrule
+      \small{Margins}&mean&$\mu = \varphi_{\beta_u}^{-1}(X_u\beta_u),$\\
+                 &variance&$\sigma^2 = \varphi_{\beta_\sigma}^{-1}(X_\sigma\beta_\sigma),$ \\
+                 &df&$\nu = \varphi_{\beta_\nu}^{-1}(X_\nu\beta_\nu),$\\
+                 &skewness&$s = \varphi_{\beta_s}^{-1}(X_s\beta_s),$\\
+                 % &...\\
+      \small{Copula} &lower tail-dependence&$\lambda_L = \varphi_{\lambda}^{-1}((X_u,X_v)\beta_{\lambda_L}),$\\
+                 &upper tail-dependence&$\lambda_U = \varphi_{\lambda}^{-1}((X_u,X_v)\beta_{\lambda_u}),$\\
+                 &Kendall's $\tau$& $\tau=\varphi_{\tau}^{-1}((X_u,X_v)\beta_\tau).$\\
+                 &Covariance Matrix\color{blue}{*}& $\Sigma=\Sigma_0 + \kappa I$ where\\
+                 &&\hspace{0.4cm}$\mathrm{vech}(\bm{\Sigma_0}) = \varphi^{-1}([\bm{I}\otimes \bm{X}]\mathrm{vec}\bm{B})$\\
+      \bottomrule
+    \end{tabular}
+    \begin{itemize}
+    \item [*] \small{Cholesky decomposition {\color{blue}\citep{huang2007estimation}} is
+        possible but not interpretation friendly.}
+    \end{itemize}
+  \end{center}
+
+
+  \begin{align*}
+  \end{align*}
+
+\end{frame}
+
+\begin{frame}[allowframebreaks]
+  \frametitle{The covariate-contingent copula model}
+  \framesubtitle{The Bayesian approach}
+  \begin{itemize}
+  \item \textbf{The marginal models}
+    \begin{itemize}
+    \item In principle, any combination of univariate marginal models can be
+      used.
+    \item When there are discrete margins, data augmentation method can be used
+      {\color{blue}\citep{smith2012estimation}}.
+
+    \item We develop \textbf{R} package to allow for
+      \begin{itemize}
+      \item mixtures of elliptical distributions {\color{blue}\citep{li2010flexible}}
+      \item regression spline where the knots locations are treated as unknown parameters
+        {\color{blue}\citep{li2013efficient}}.
+      \end{itemize}
+
+
+    \item In the continuous case, we use univariate model that each margin is
+      from the student \emph{t} distribution \color{blue}{\citep{li2010flexible}}.
+    \end{itemize}
+
+  \item \textbf{The log Posterior}
+    \[
+      \begin{split}\log p(\{\bm{\beta},\bm{\mathcal{I}}\}|\bm{y},\bm{x})=
+        \mathrm{c}&+\sum\nolimits _{j=1}^{M}\left\{\log
+          p(\bm{y}_{.j}|\{\bm{\beta},\bm{\mathcal{I}}\}_{j},\bm{x}_{j}) + \log p(\{\bm{\beta},\bm{\mathcal{I}}_j\}) \right\}\\
+        & +\log\mathcal{L}_{C}(\bm{u}_{1:M}|\{\bm{\beta},\bm{\mathcal{I}}\}_{C},\bm{y},\bm{x})+
+        \log p_C(\{\bm{\beta},\bm{\mathcal{I}}\})
+      \end{split}
+    \]
+
+    where
+    \begin{itemize}
+    \item $\{\bm{\beta}\}$ are the coefficient in the linking function,
+    \item $\{\bm{\mathcal{I}}\}$ are the corresponding variable selection indicators.
+    \item $\{\bm{\beta},\bm{\mathcal{I}}\}$ can be estimated jointly via Bayesian approach.
+    \item $\bm{u}_{j}=F_{j}(y_{j})$ is the CDF of the $j$:th marginal model.
+    \end{itemize}
+
+    % \begin{equation*}
+    %   \begin{split}
+    %     & \log \mathcal{L} (Y_u,Y_v| X_u, X_v,\lambda_L, \tau,\beta_u,\beta_v) =  \sum_{i=1}^{n}
+    %     \log c(u_i,v_i, \lambda_L, \tau) \\
+    %     & \hspace{2.8cm}  + \log \mathcal{L}_u(Y_u|X_u,\beta_u) + \log \mathcal{L}_v(Y_v|X_v,\beta_v)\\
+    %   \end{split}
+    % \end{equation*}
+
+  \end{itemize}
+\end{frame}
+
+\section{The Bayesian Scheme}
+
+% \begin{frame}
+%   \frametitle{The covariate-contingent copula model}
+%   \framesubtitle{The Bayesian approach}
+%   \begin{itemize}
+
+%   \item \textbf{The priors} for the copula model are easy to specify due to our
+%     reparameterization.
+
+%     \begin{itemize}
+
+%     \item It it \textbf{not easy} to specify priors directly on
+%       $\{\bm{\beta},\bm{\mathcal{I}}\}$
+
+%     \item But it is \textbf{easy} to puts prior information on the model parameters
+%       features ($\tau$, $\mu$, $\sigma^2$) and then derive the implied prior on the
+%       intercepts and variable selection indicators.
+
+%     \item When variable selection is used, we assume there are no covariates in
+%       the link functions \emph{a priori}.
+
+%     \end{itemize}
+
+%   \item \textbf{The posterior} inference is straightforward although the model is very
+%     complicated.
+%   \end{itemize}
+% \end{frame}
+
+% \begin{frame}[allowframebreaks]
+%   \frametitle{The dynamic copula model}
+%   \framesubtitle{Sampling the posterior with an efficient MCMC scheme}
+%   \begin{itemize}
+%   \item We update all the parameters \textbf{jointly} by using tailored
+%     Metropolis-Hastings within Gibbs.
+%   \item The proposal density for each parameter vector $\beta$ is a multivariate \emph{t}-density with  $df>2$,
+%     \[
+%       \bm{\beta}_{p} |\bm{\beta}_{c}\sim\bm{MVT}\left[\bm{\hat{\beta}},~\left.-\left(\frac{\partial^{2}\ln
+%               p(\bm{\beta}|\bm{Y})}{\partial\bm{\beta}\partial\bm{\beta}^{\prime}}\right)^{-1}\right\vert
+%         _{\bm{\beta}=\bm{\hat{\beta}}},~df\right],
+%     \]
+%     where $\bm{\hat{\beta}}$ is obtained by $R$ steps ($R\leq 3$) Newton's
+%     iterations during the proposal with analytical gradients.
+
+%   \item This approach has some flavor of Hamiltonian MC when $R=1$ (Thanks Rong Chen for
+%     pointing this out).
+
+%   \item \textbf{Bayesian variable selection} is carried out simultaneously.
+
+%     % \item It is eventually straightforward. Thanks to the chain rule!
+
+%   \end{itemize}
+
+
+%   \begin{itemize}
+%   \item The Gibbs sampler for covariate-dependent copula.
+%   \item The notation $\{\beta_{\mu},\mathcal{I}_{\mu}\}_{-m}$ indicates all other
+%     parameters in the model except $\{\beta_{\mu},\mathcal{I}_{\mu}\}_{m}$. The updating
+%     order is column-wise from left to right. If dependent link functions are used, the
+%     updating should be ordered accordingly.
+%   \end{itemize}
+%   \begin{table}
+%     \label{tab:gibbs}
+%     \centering
+%     \resizebox{\textwidth}{!}{
+%       \begin{tabular}{llll}
+%         \toprule
+%         Margin component $(1)$ & ...  & Margin component ($M$) & Copula component ($C$)\tabularnewline
+%                                                                  \midrule
+%                                                                  $(1.1)$ $\{\beta_{\mu},\mathcal{I}_{\mu}\}_{1}|\{\beta_{\mu},\mathcal{I}_{\mu}\}_{-1}$  & ...  & $(M.1)$ $\{\beta_{\mu},\mathcal{I}_{\mu}\}_{M}|\{\beta_{\mu},\mathcal{I}_{\mu}\}_{-M}$  & $(C.1)$ $\{\beta_{\lambda},\mathcal{I}_{\lambda}\}_{C}|\{\beta_{\lambda},\mathcal{I}_{\lambda}\}_{-C}$\tabularnewline
+%                                                                                                                                                                                                                                                             $(1.2)$ $\{\beta_{\phi},\mathcal{I}_{\phi}\}_{1}|\{\beta_{\phi},\mathcal{I}_{\phi}\}_{-1}$  & ...  & $(M.2)$ $\{\beta_{\phi},\mathcal{I}_{\phi}\}_{M}|\{\beta_{\phi},\mathcal{I}_{\phi}\}_{-M}$  & $(C.2)$ $\{\beta_{\tau},\mathcal{I}_{\tau}\}_{C}|\{\beta_{\tau},\mathcal{I}_{\tau}\}_{-C}$\tabularnewline
+%                                                                                                                                                                                                                                                                                                                                                                                                                                                                $(1.3)$ $\{\beta_{\nu},\mathcal{I}_{\nu}\}_{1}|\{\beta_{\nu},\mathcal{I}_{\nu}\}_{-1}$  & ...  & $(M.3)$ $\{\beta_{\nu},\mathcal{I}_{\nu}\}_{M}|\{\beta_{\nu},\mathcal{I}_{\nu}\}_{-M}$  & \tabularnewline
+%                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           $(1.4)$ $\{\beta_{\kappa},\mathcal{I}_{\kappa}\}_{1}|\{\beta_{\kappa},\mathcal{I}_{\kappa}\}_{-1}$  & ...  & $(M.4)$ $\{\beta_{\kappa},\mathcal{I}_{\kappa}\}_{M}|\{\beta_{\kappa},\mathcal{I}_{\kappa}\}_{-M}$  & \tabularnewline
+%                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              \bottomrule
+%       \end{tabular}
+%     }
+%   \end{table}
+
+% \end{frame}
+
+\begin{frame}[allowframebreaks]
+  \frametitle{The dynamic copula model}
+  \framesubtitle{The computational details}
+  \begin{itemize}
+
+  \item \textbf{Taming the Beast:} the analytical gradients require the derivative for the
+    copula density and marginal densities which can be conveniently decomposed via the
+    chain rule that greatly reduces the complexity of the the gradient calculation.
+    {\footnotesize
+      \begin{align*}
+        \frac{\partial\log c(u_{1:M},\lambda_{L},\tau)}{\partial\lambda_{L}}= & \frac{\partial\log c(u_{1:M},\theta,\delta)}{\partial\delta}\times\left(\frac{\partial\lambda_{L}}{\partial\delta}\right)^{-1}\\
+                                                                              &+\frac{\partial\log c(u_{1:M},\theta,\delta)}{\partial\theta}\times\left(\frac{\partial\lambda_{L}}{\partial\theta}\right)^{-1}\\
+        \frac{\partial\log c(u_{1:M},\lambda_{L},\tau)}{\partial\tau}= &
+                                                                         \frac{\partial\log c(u_{1:M},\theta,\delta)}{\partial\theta}\times\left(\frac{\partial\tau(\theta,\delta)}{\partial\theta}\right)^{-1}\\
+                                                                              & +                                                                           \frac{\partial\log c(u_{1:M},\theta,\delta)}{\partial\delta}\times\left(\frac{\partial\tau(\theta,\delta)}{\partial\delta}\right)^{-1}\\
+        \frac{\partial\log c(u_{1:M},,\lambda_{L},\tau)}{\partial\varphi_{m}}= &
+                                                                                 \frac{\partial\log c(u_{1:M},,\theta,\delta)}{\partial u_{m}}\times\frac{\partial
+                                                                                 u_{m}}{\partial\varphi_m}\\ &+ \frac{\partial \log
+                                                                                                               p_m(y_m,\varphi_m)}{\partial \varphi_m}
+      \end{align*}
+    }
+
+  \item The direct derivatives of CDF function and PDF functions with respect to their
+    parameters are straightforward for most densities.
+
+  \item Existing derivatives for PDF functions in marginal models:
+
+    \begin{itemize}
+    \item {\color{blue}\citet{li2010flexible}} (mixtures of asymmetric student-\emph{t}
+      densities where asymmetric normal and symmetric student-\emph{t} densities are its
+      special cases),
+
+    \item {\color{blue}\citet{li2011modeling}} (gamma and log-normal models)
+    \item {\color{blue}\citet{villani2012generalized}} (negative binomial, beta and
+      generalized Poisson models)
+    \item {\color{blue}\citet{li2013efficient}} (spline model with knots location as unknown
+      parameters).  densities)
+    \end{itemize}
+
+  \item {\color{blue}{Li (2015, JBES forthcoming)}} (derivatives for Joe-Clayton copula,
+    Gumbel copula and  multivariate \emph{t} copula).
+
+  \item \textbf{The bad news}: Evaluating the gradients are very time consuming if we do
+    it sequentially, e.g.
+
+    \begin{itemize}
+    \item when t copula is used, the tail-dependence for $i$th and $j$th margins
+      ($\lambda_{Lij}$) are {\color{blue}\citep{embrechts1997modelling}}
+      \begin{align*}
+        \lambda_{Lij} = \frac{\int _{\pi/4 - \mathrm{arcsin}
+        (\rho_{ij})/2}^{\pi/2}\mathrm{cos}^{\nu}(t)dt}{\int _0^{\pi} \mathrm{cos}^{\nu} (t) d t}
+      \end{align*}
+      and $\rho_{ij}$ is the correlation coefficient for $i$th and $j$th margins.
+
+    \item Kendall's $\tau$ of the Joe-Clayton copula is of the form
+      \[
+        \tau(\theta,\delta)=\begin{cases}
+          1-2/[\delta(2-\theta)]+4B\left(\delta+2,2/\theta-1\right)/(\theta^{2}\delta), &{\hspace{-2cm}}1\leq\theta<2;\\
+          1-\left[\psi(2+\delta)-\psi(1)-1\right]/\delta, &{\hspace{-2cm}} \theta=2;\\
+          1-2/[\delta(2-\theta)]&{\hspace{-2cm}}\theta>2\\{\hspace{0.3cm}}-4\pi/\left[\theta^{2}\delta(2+\delta)\sin(2\pi/\theta)B\left(1+\delta+2/\theta,2-2/\theta\right)\right], &
+        \end{cases}
+      \]
+
+    \end{itemize}
+
+  \item \textbf{The good news}: the gradient can be evaluated parallelly because we assume
+    the observations are independent.
+
+  \item Our parallel version code running on a 16-core CPU can speed up the
+    computation at least \textbf{10X}.
+
+
+  \item The code is written in \textbf{R} and is running on a Linux cluster with 80 cores
+    and total 1TB RAM.
+
+  \item We recompile R with Intel MKL library that greatly speed up the numerical
+    computations.
+
+  \item A rich class of multivariate models is implemented.
+    % \begin{itemize}
+    % \item Clayton, Gumbel, multivariate student-\emph{t}, BB7 copulas with marginal models
+    %   allowed for Garch, splines, asymmetric student t and their mixtures.
+    % \end{itemize}
+    % \item \textbf{Why not random walk Metropolis or RJMCMC}?
+
+    %   \begin{itemize}
+    %   \item Random walk Metropolis or RJMCMC are very inefficient in such complicated model.
+  \item Our tailored Metropolis-Hastings keeps the overall acceptance probability above
+    \textbf{80\%}.
+  \end{itemize}
+\end{frame}
+
+% \begin{frame}
+%   \frametitle{Why not two-stage approach?}
+%   \begin{itemize}
+%   \item The asymptotic relative efficiency of the two-stage estimation procedure depends
+%     on how close the copula is to the Fr\'echet bounds
+%     {\color{blue}\citep{joe2005asymptotic}}.
+%   \item The two-stage approach in estimating the multivariate DCC GARCH model is
+%     consistent but not fully efficient due to the limited information provided by the
+%     estimators {\color{blue}\citep{engle2001theoretical}}.
+%   \end{itemize}
+% \end{frame}
+
+% \begin{frame}
+%   \frametitle{Model Comparison}
+%   \begin{itemize}
+%   \item We evaluating the model performance based on \textbf{out-of-sample prediction}.
+%   \item In our time series application, we estimate the model based on the 80\% of
+%     historical data and then predict the last 20\% data.
+
+%   \item We evaluate the quality of the one-step-ahead predictions using the \textbf{log
+%       predictive score} (LPS)
+%     \begin{align*}
+%       \mathrm{LPS}=&\log p(D_{(T+1):(T+p)}|D_{1:T})\\
+%       =&\sum\nolimits _{i=1}^{p}\log\int p(D_{T+i}|\theta,D_{1:(T+i-1)})p(\theta|D_{1:(T+i-1)})\mathrm{d}\theta
+%     \end{align*}
+%     where $D_{a:b}$ is the dataset from time $a$ to $b$ and $\theta$ are the model
+%     parameters.
+%   \end{itemize}
+% \end{frame}
+
+
+\section{Empirical study and extensions}
+
+\begin{frame}[plain]
+  \addtocounter{framenumber}{-1}
+
+  \begin{center}
+    {\Large \color{blue}{\textbf{The stock returns, a revisit}}}
+  \end{center}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Model comparison}
+\centering
+  \resizebox{!}{0.45\textheight}{
+          \begin{tabular}{llrrrr}
+            \toprule
+            \multicolumn{2}{c}{Components Combination} &    \multicolumn{4}{c}{Copulas (\emph{reparameterizations})} \\
+            \cline{3-6}
+            \multicolumn{2}{c}{($M_1 + M_2 + C$)}     &   Joe-Clayton  & Clayton  &  Gumbel & \emph{t}-Copula \\
+
+            \multicolumn{2}{c}{}     &   $(\lambda_L,~\lambda_U)$  &  $(\tau)$  &  $(\tau)$ &
+                                                                                              $(\tau,~ \nu)$   \\
+
+            \midrule
+
+            \multicolumn{6}{c}{(\emph{joint modeling approaches})}\\
+
+            SPLIT-\emph{t} &  $M_1$  &    $-1743.12$      &   $-1741.04$       &   $-1754.36$      &    $-1741.47$               \\
+            Poison               &  $M_2$  &     $-1435.98$    &     $-1468.25$     &    $-1485.68$     &     $-1430.07$                \\
+                                                       &  $C_x$   &     $837.50$       &   $690.22$       &  $797.78$       &       $792.14$              \\
+                                                       % \cline{1-2}
+                                                       &  $Joint$   &    $\mathbf{-2344.12}$       &    $-2523.75$     &   $-2448.14$     &   $-2380.12$                \\
+            \\
+
+            SPLIT-\emph{t} &  $M_1$  &    $-1747.99$      &   $-1747.15$       &   $-1754.61$      &       $-1782.37$            \\
+            Poison               &  $M_2$  &     $-1434.22$    &     $-1449.95$     &    $-1446.84$     &     $-1658.09$                \\
+                                                       &  $C_0$   &     $779.14$       &   $654.46$       &  $780.33$       &      $703.96$               \\
+                                                       % \cline{1-2}
+                                                       &  $Joint$   &    $\mathbf{-2411.06}$       &    $-2547.14$     &   $-2421.15$     &   $-2736.49$                \\
+            \midrule
+
+            \multicolumn{6}{c}{(\emph{two-stage modeling approaches})}\\
+
+
+            SPLIT-\emph{t} &  $M_1$  &    $-1740.10$      &   $-1741.05$       &   $-1737.73$      &     $-1741.47$              \\
+            Poison         &  $M_2$  &     $-1428.39$    &     $-1436.63$     &    $-1427.83$     &      $-1433.41$               \\
+                                                       &  $C_x$   &     $819.63$       &   $694.84$       &  $781.39$       &       $788.22$              \\
+                                                       % \cline{1-2}
+                                                       &  $Joint$   &    $\mathbf{-2346.61}$       &    $-2483.93$     &   $-2392.13$     &   $-2389.41$                \\
+
+            \\
+            GARCH          &  $M_1$   &     $-1948.07$       &  $-1948.07$        &  $-1948.07$    &     $-1948.07$                \\
+            Poison            &  $M_2$   &     $-1673.85$       &  $-1673.85$        &  $-1673.85$     &    $-1673.85$                 \\
+                                                       &  $C_x$   &     $702.35$       &    $530.48$      &   $810.39$      &        $791.55$               \\
+                                                       % \cline{1-2}
+                                                       &  $Joint$   &     $-2919.57$       &   $$-3091.44$$       &  $-2811.53$   &     $-2830.37$                \\
+            \\
+            SV             &  $M_1$   &     $-2166.90$       &  $-2154.18$        &   $-2168.17$      &         $-2179.36$            \\
+            Poison               &  $M_2$   &     $-1811.36$       &   $-1844.57$       &  $-1808.61$      &     $-1808.24$              \\
+                                                       &  $C_x$   &     $964.37$      &   $698.30$     &   $1012.10$      &      $1053.19$               \\
+                                                       % \cline{1-2}
+                                                       &  $Joint$   &     $-3013.90$       &     $-3300.46$     &  $-2964.68$  &    $-2934.40$               \\
+            \midrule
+            \multicolumn{6}{c}{(\emph{bivariate volatility models})}\\
+            DCC-GARCH &  $-2730.78$ & \\
+            SV &  $-2999.63$ & \\
+
+            \bottomrule
+          \end{tabular}
+        }
+\end{frame}
+
+\begin{frame}
+  \frametitle{The posterior mean, variance, skewness and kurtosis for Alibaba stock returns}
+  \begin{figure}
+    \centering
+     \includegraphics[height=0.9\textheight]{plot/BABAStocks}\\
+    % \includegraphics[height=0.45\textheight]{plot/BABAStocks}\\
+    % \includegraphics[height=0.45\textheight]{plot/BABAStocks}\\
+
+  \end{figure}
+\end{frame}
+
+
+\begin{frame}
+  \frametitle{The lower tail dependence $\lambda_L$ (up) and upper tail-dependence (down) over
+    time for Alibaba stock returns and its news (bottom row)}
+  \begin{figure}
+    \centering
+    \includegraphics[height=0.9\textheight]{plot/lambdaLU}\\
+    % \hspace{-1cm}\includegraphics[height=0.41\textheight]{tau-post}
+  \end{figure}
+\end{frame}
+
+
+\begin{frame}
+  \frametitle{Extensions and future work}
+  \begin{enumerate}
+  \item We are working to extend the model for high-dimensional response variables.
+
+  \item Efficient approximation of the posterior via sub-sampling to handle much bigger
+    data. Several Big Data MCMC approaches have been already considered in
+    {\color{blue}Welling and Teh (2011), Korattikara et al. (2013), Teh et al. (2014),
+      Bardenet et al. (2014), Maclaurin and Adams (2014), Minsker et al.  (2014), Quiroz
+      et al. (2014)} and {\color{blue}Strathmann et al. (2015)} but not in such general
+    model.
+
+  \end{enumerate}
+\end{frame}
+
+\begin{frame}[allowframebreaks]
+  \frametitle{References}
+  \bibliography{full,References}
+  \bibliographystyle{asa}
+\end{frame}
+
+\begin{frame}[plain]
+  \addtocounter{framenumber}{-1}
+  \begin{center}
+    {\color{SUblue} \textbf{\Huge Thank you!}}
+    \vspace{1cm}
+
+    {\texttt{\textbf{\url{feng.li@cufe.edu.cn}}}}
+
+    \vspace{1cm}
+
+    {\texttt{\textbf{\url{http://feng.li/}}}}
+
+  \end{center}
+\end{frame}
+
+\end{document}

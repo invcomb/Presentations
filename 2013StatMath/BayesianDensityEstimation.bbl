@@ -1,0 +1,62 @@
+\begin{thebibliography}{10}
+\expandafter\ifx\csname natexlab\endcsname\relax\def\natexlab#1{#1}\fi
+
+\bibitem[{Casella et~al.(2009)Casella, Gir{\'o}n, Mart{\'\i}nez \&
+  Moreno}]{casella2009consistency}
+\textsc{Casella, G.}, \textsc{Gir{\'o}n, F.~J.}, \textsc{Mart{\'\i}nez, M.~L.}
+  \& \textsc{Moreno, E.} (2009).
+\newblock Consistency of bayesian procedures for variable selection.
+\newblock \textit{The Annals of Statistics} , 1207--1228.
+
+\bibitem[{Escobar(1994)}]{escobar1994estimating}
+\textsc{Escobar, M.~D.} (1994).
+\newblock {Estimating Normal Means with a Dirichlet Process Prior}.
+\newblock \textit{Journal of the American Statistical Association} \textbf{89},
+  268.
+
+\bibitem[{Holmes \& Mallick(2003)}]{holmes2003generalized}
+\textsc{Holmes, C.~C.} \& \textsc{Mallick, B.~K.} (2003).
+\newblock {Generalized Nonlinear Modeling With Multivariate Free-Knot
+  Regression Splines}.
+\newblock \textit{Journal of the American Statistical Association} \textbf{98},
+  352--368.
+
+\bibitem[{Jiang \& Tanner(1999)}]{jiang1999approximation}
+\textsc{Jiang, W.} \& \textsc{Tanner, M.~a.} (1999).
+\newblock {On the approximation rate of hierarchical mixtures-of-experts for
+  generalized linear models.}
+\newblock \textit{Neural computation} \textbf{11}, 1183--98.
+
+\bibitem[{Joe(1997)}]{joe1997multivariate}
+\textsc{Joe, H.} (1997).
+\newblock \textit{Multivariate models and dependence concepts}.
+\newblock Chapman \& Hall, London.
+
+\bibitem[{Kass \& Raftery(1995)}]{kass1995bayes}
+\textsc{Kass, R.} \& \textsc{Raftery, A.} (1995).
+\newblock {Bayes factors}.
+\newblock \textit{Journal of the American Statistical Association} \textbf{90},
+  773--795.
+
+\bibitem[{Li \& Villani(2013)}]{li2013efficient}
+\textsc{Li, F.} \& \textsc{Villani, M.} (2013).
+\newblock Efficient {B}ayesian multivariate surface regression.
+\newblock \textit{Scandinavian Journal of Statistics} \textbf{in press}.
+
+\bibitem[{Nott \& Kohn(2005)}]{nott2005adaptive}
+\textsc{Nott, D.} \& \textsc{Kohn, R.} (2005).
+\newblock Adaptive sampling for {Bayes}ian variable selection.
+\newblock \textit{Biometrika} \textbf{92}, 747--763.
+
+\bibitem[{Patton(2012)}]{patton2012review}
+\textsc{Patton, A.} (2012).
+\newblock A review of copula models for economic time series.
+\newblock \textit{Journal of Multivariate Analysis} \textbf{110}, 4--18.
+
+\bibitem[{Sklar(1959)}]{sklar1959fonctions}
+\textsc{Sklar, A.} (1959).
+\newblock Fonctions de répartition à n dimensions et leurs marges.
+\newblock \textit{Publications de l'Institut de Statistique de L'Université de
+  Paris} \textbf{8}, 229--231.
+
+\end{thebibliography}

@@ -1,0 +1,34 @@
+Feng Li
+
+Department of Statistics, Stockholm University
+
+
+Title:
+
+Complex model for complex data, the statistical approach
+
+Summary:
+
+Statistical methods have been developed rapidly in the past
+twenty years.  One driving factor of this development is
+that more and more complicated high-dimensional data require
+sophisticated data analysis methods. A noticeably successful
+case is the machine learning field which is now wildly used
+in industry. Another reason are the dramatic advancements in
+the statistical computational environment. Computationally
+expensive methods that in the past could only be run on
+expensive super computers are now possible to run on a
+standard PC. This has created an enormous momentum for
+statistical analysis where complex models are typically
+analyzed with modern computer-intensive methods. In this
+talk we will discuss how complex statistical models can be
+applied in several challenging data in finance and other
+areas.
+
+Language: English
+
+
+Would you like to hold a lecture in front of a selected
+class with high school students please let us know!
+
+No.

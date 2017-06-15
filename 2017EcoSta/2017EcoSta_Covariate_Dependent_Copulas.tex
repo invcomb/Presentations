@@ -1,0 +1,280 @@
+\documentclass[10pt]{beamer}
+
+%% Fonts
+\usepackage{multicol}
+\usepackage{mathabx}
+\usepackage[scaled]{helvet}
+\usepackage{lmodern}
+\usepackage{eulervm}
+\usepackage{natbib}
+\usepackage{booktabs}
+%\usefonttheme[onlymath]{serif}
+%\usefonttheme{professionalfonts}
+\usefonttheme{structurebold}
+\usepackage{bm}
+
+
+%% Color & Theme
+\definecolor{SUblue}{RGB}{0,0,180}
+\usecolortheme[RGB={0,0,180}]{structure}
+\usetheme{Boadilla}
+\setbeamertemplate{navigation symbols}{}
+\setbeamertemplate{itemize items}[circle]
+\setbeamertemplate{enumerate items}[circle]
+\setbeamerfont{title}{size=\large}
+\setbeamerfont{frametitle}{size=\large}
+\setbeamerfont{framesubtitle}{size=\large,shape =$\color{violet}{\looparrowdownright}~$}
+\setbeamercolor{title}{fg=white, bg= SUblue!75!green}
+\setbeamercolor{framesubtitle}{fg=violet}
+%% \setlength{\leftmargini}{5pt}
+
+\hypersetup{
+  colorlinks=true,
+  linkcolor=SUblue,
+  citecolor=SUblue,
+  urlcolor=SUblue}
+
+
+\title[Dynamical Copula Modeling]{{\textbf{Bayesian covariate-dependent copula modeling
+      with applications in stocks, text sentiments and firm credit risks}}}
+
+
+
+\author[Feng Li]{\includegraphics[height=2cm]{cufelogo}\\
+  \vspace{0.5cm}\textbf{Feng Li}
+  \\\vspace{0.3cm}\url{feng.li@cufe.edu.cn}\\\url{http://feng.li/}}
+
+\institute[SAM.CUFE.EDU.CN]{\footnotesize{\textbf{School of Statistics and
+      Mathematics\\ Central University of Finance and Economics}}}
+\date{}
+
+\begin{document}
+%% Title page
+\begin{frame}[plain]
+  \addtocounter{framenumber}{-1}
+  \titlepage
+\end{frame}
+
+
+\begin{frame}
+  \frametitle{Collaborators on the series of papers}
+  \begin{itemize}
+  \item Yanfei Kang, Associate Professor, Beihang University, Beijing China.
+  \item Anastasios Panagiotelis, Associate Professor, Monash University, Australia.
+  \item Zhuojing He, PhD student, Central University of Finance and Economics, Beijing
+    China.
+  \end{itemize}
+\end{frame}
+
+
+\section{Covariate-dependent copula models}
+\begin{frame}
+  \frametitle{Covariate-dependent copula models}
+  \framesubtitle{The Joe-Clayton copula example}
+  \begin{itemize}
+  \item The Joe-Clayton copula function
+    \[
+    \begin{split}
+      C(u,v,\theta,\delta)=&1-\left[1-\left\{\left(1-\bar u ^{\theta }\right)^{-\delta
+          }+\left(1-\bar v ^{\theta }\right)^{-\delta }-1\right\}^{-1/\delta
+        }\right]^{1/\theta }
+    \end{split}
+    \]
+    where $\theta \geq 1$, $\delta > 0$, $\bar u = 1-u$, $\bar v = 1-v$ .
+
+  \item Some properties:
+    \begin{itemize}
+
+    \item $\lambda_L=2^{-1/\delta}$ does not depend on $\lambda_U=2-2^{-1/\theta}$.
+    \item  $\tau=1- 4\int _0^{\infty} s\times(\varphi'(s))^2ds$ is calculated via Laplace transform.
+    \end{itemize}
+  \end{itemize}
+
+\end{frame}
+
+
+\begin{frame}
+  \frametitle{Covariate-dependent copula models}
+  \framesubtitle{The reparameterized copula model}
+  \begin{itemize}
+
+  % \item \textbf{The motivation} i) The interpretation of correlation and tail-dependence.
+  %   ii) Dynamical modeling tail-dependence and correlation.
+
+  \item \textbf{Reparametrization}: We reparameterize copula as a function of
+    tail-dependence and/or Kendall's tau $C(\bm{u},\lambda_L,\tau)$.
+
+  \item \textbf{Link with covariates}: All copula features in the $k$:th and $l$:th margins can be connected with
+    covariates
+      \begin{align*}
+        \tau_{kl}&=l_{\tau}^{-1}(\bm{X}_{kl}\bm{\beta}_{\tau}),\\
+        \lambda_{kl}&=l_{\lambda}^{-1}(\bm{X}_{kl}\bm{\beta}_{\lambda})
+      \end{align*}
+
+    \item \textbf{Applicable Copulas}: Any copula can be equally well used with such
+      reparameterization when there is closed form of tail-dependence and Kendall's
+      $\tau$.
+
+    \begin{itemize}
+    \item \textbf{Archimedean copulas}: Joe-Clayton, Clayton, Gumbel,...
+    \item \textbf{Elliptical copulas}: Gaussian and \emph{t} copulas
+    \end{itemize}
+
+  \item Marginal models we have used
+
+    \begin{itemize}
+    \item Mixture of asymmetric student's-\emph{t} distributions.
+    \item GARCH models stochastic volatility (SV) models.
+    \item Poisson regression models.
+    \end{itemize}
+
+  \end{itemize}
+\end{frame}
+
+
+
+\begin{frame}[allowframebreaks]
+  \frametitle{The covariate-contingent copula model}
+  \framesubtitle{The Bayesian approach}
+  \begin{itemize}
+
+  \item \textbf{The log Posterior}
+    \[
+    \begin{split}\log p(\{\bm{\beta},\bm{\mathcal{I}}\}|\bm{y},\bm{x})=
+      \mathrm{c}&+\sum\nolimits _{j=1}^{M}\left\{\log
+        p(\bm{y}_{.j}|\{\bm{\beta},\bm{\mathcal{I}}\}_{j},\bm{x}_{j}) + \log p(\{\bm{\beta},\bm{\mathcal{I}}_j\}) \right\}\\
+      & +\log\mathcal{L}_{C}(\bm{u}_{1:M}|\{\bm{\beta},\bm{\mathcal{I}}\}_{C},\bm{y},\bm{x})+
+      \log p_C(\{\bm{\beta},\bm{\mathcal{I}}\})
+    \end{split}
+    \]
+
+    where
+    \begin{itemize}
+    \item $\{\bm{\beta}\}$ are the coefficient in the linking function,
+    \item $\{\bm{\mathcal{I}}\}$ are the corresponding variable selection indicators.
+    \item $\{\bm{\beta},\bm{\mathcal{I}}\}$ can be estimated jointly via Bayesian approach.
+    \item $\bm{u}_{j}=F_{j}(y_{j})$ is the CDF of the $j$:th marginal model.
+    \end{itemize}
+
+    % \begin{equation*}
+    %   \begin{split}
+    %     & \log \mathcal{L} (Y_u,Y_v| X_u, X_v,\lambda_L, \tau,\beta_u,\beta_v) =  \sum_{i=1}^{n}
+    %     \log c(u_i,v_i, \lambda_L, \tau) \\
+    %     & \hspace{2.8cm}  + \log \mathcal{L}_u(Y_u|X_u,\beta_u) + \log \mathcal{L}_v(Y_v|X_v,\beta_v)\\
+    %   \end{split}
+    % \end{equation*}
+
+  \end{itemize}
+\end{frame}
+
+\section{The Bayesian Scheme}
+
+\begin{frame}
+  \frametitle{The Bayesian approach}
+  \begin{itemize}
+
+  \item \textbf{The priors} for the copula model are easy to specify due to our
+    reparameterization.
+
+    \begin{itemize}
+
+    \item It it \textbf{not easy} to specify priors directly on
+      $\{\bm{\beta},\bm{\mathcal{I}}\}$
+
+    \item But it is \textbf{easy} to puts prior information on the model parameters
+      features ($\tau$, $\mu$, $\sigma^2$) and then derive the implied prior on the
+      intercepts and variable selection indicators.
+
+    \item When variable selection is used, we assume there are no covariates in
+      the link functions \emph{a priori}.
+
+    \end{itemize}
+
+  \item \textbf{The posterior} inference is straightforward although the model is very
+    complicated.
+  \end{itemize}
+\end{frame}
+
+\begin{frame}[allowframebreaks]
+  \frametitle{Sampling the posterior with an efficient MCMC scheme}
+  \begin{itemize}
+  \item We update all the parameters \textbf{jointly} by using tailored
+    Metropolis-Hastings within Gibbs.
+
+  \item \textbf{Taming the Beast:} the analytical gradients require the derivative for the
+    copula density and marginal densities which can be conveniently decomposed via the
+    chain rule that greatly reduces the complexity of the the gradient calculation.
+
+
+  \item \textbf{Bayesian variable selection} is carried out simultaneously.
+
+    % \item It is eventually straightforward. Thanks to the chain rule!
+
+  % \end{itemize}
+
+
+  % \begin{itemize}
+  \item The Gibbs sampler for covariate-dependent copula.
+  % \item The notation $\{\beta_{\mu},\mathcal{I}_{\mu}\}_{-m}$ indicates all other
+  %   parameters in the model except $\{\beta_{\mu},\mathcal{I}_{\mu}\}_{m}$. The updating
+  %   order is column-wise from left to right. If dependent link functions are used, the
+  %   updating should be ordered accordingly.
+  \begin{table}
+    \label{tab:gibbs}
+    \centering
+    \resizebox{0.9 \textwidth}{!}{
+      \begin{tabular}{llll}
+        \toprule
+        Margin component $(1)$ & ...  & Margin component ($M$) & Copula component ($C$)\tabularnewline
+                                                                 \midrule
+                                                                 $(1.1)$ $\{\beta_{\mu},\mathcal{I}_{\mu}\}_{1}|\{\beta_{\mu},\mathcal{I}_{\mu}\}_{-1}$  & ...  & $(M.1)$ $\{\beta_{\mu},\mathcal{I}_{\mu}\}_{M}|\{\beta_{\mu},\mathcal{I}_{\mu}\}_{-M}$  & $(C.1)$ $\{\beta_{\lambda},\mathcal{I}_{\lambda}\}_{C}|\{\beta_{\lambda},\mathcal{I}_{\lambda}\}_{-C}$\tabularnewline
+                                                                                                                                                                                                                                                            $(1.2)$ $\{\beta_{\phi},\mathcal{I}_{\phi}\}_{1}|\{\beta_{\phi},\mathcal{I}_{\phi}\}_{-1}$  & ...  & $(M.2)$ $\{\beta_{\phi},\mathcal{I}_{\phi}\}_{M}|\{\beta_{\phi},\mathcal{I}_{\phi}\}_{-M}$  & $(C.2)$ $\{\beta_{\tau},\mathcal{I}_{\tau}\}_{C}|\{\beta_{\tau},\mathcal{I}_{\tau}\}_{-C}$\tabularnewline
+                                                                                                                                                                                                                                                                                                                                                                                                                                                               $(1.3)$ $\{\beta_{\nu},\mathcal{I}_{\nu}\}_{1}|\{\beta_{\nu},\mathcal{I}_{\nu}\}_{-1}$  & ...  & $(M.3)$ $\{\beta_{\nu},\mathcal{I}_{\nu}\}_{M}|\{\beta_{\nu},\mathcal{I}_{\nu}\}_{-M}$  & \tabularnewline
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          $(1.4)$ $\{\beta_{\kappa},\mathcal{I}_{\kappa}\}_{1}|\{\beta_{\kappa},\mathcal{I}_{\kappa}\}_{-1}$  & ...  & $(M.4)$ $\{\beta_{\kappa},\mathcal{I}_{\kappa}\}_{M}|\{\beta_{\kappa},\mathcal{I}_{\kappa}\}_{-M}$  & \tabularnewline
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             \bottomrule
+      \end{tabular}
+    }
+  \end{table}
+\end{itemize}
+
+\end{frame}
+
+
+\begin{frame}
+  \frametitle{Why not two-stage approach?}
+  \begin{itemize}
+  \item The asymptotic relative efficiency of the two-stage estimation procedure depends
+    on how close the copula is to the Fr\'echet bounds
+    {\citep{joe2005asymptotic}}.
+  \item The two-stage approach in estimating the multivariate DCC GARCH model is
+    consistent but not fully efficient due to the limited information provided by the
+    estimators {\citep{engle2001theoretical}}.
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Model Comparison}
+  \begin{itemize}
+  \item We evaluating the model performance based on \textbf{out-of-sample prediction}.
+  \item In our time series application, we estimate the model based on the 80\% of
+    historical data and then predict the last 20\% data.
+
+  \item We evaluate the quality of the one-step-ahead predictions using the \textbf{log
+      predictive score} (LPS)
+    \begin{align*}
+      \mathrm{LPS}=&\log p(D_{(T+1):(T+p)}|D_{1:T})\\
+      =&\sum\nolimits _{i=1}^{p}\log\int p(D_{T+i}|\theta,D_{1:(T+i-1)})p(\theta|D_{1:(T+i-1)})\mathrm{d}\theta
+    \end{align*}
+    where $D_{a:b}$ is the dataset from time $a$ to $b$ and $\theta$ are the model
+    parameters.
+  \end{itemize}
+\end{frame}
+
+
+\begin{frame}[allowframebreaks]
+  \frametitle{References}
+  \bibliography{References,full}
+  \bibliographystyle{asa}
+\end{frame}
+
+\end{document}

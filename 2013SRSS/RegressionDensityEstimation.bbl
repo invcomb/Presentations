@@ -1,0 +1,24 @@
+\begin{thebibliography}{3}
+\expandafter\ifx\csname natexlab\endcsname\relax\def\natexlab#1{#1}\fi
+
+\bibitem[{Jacobs et~al.(1991)Jacobs, Jordan, Nowlan \&
+  Hinton}]{jacobs1991adaptive}
+\textsc{Jacobs, R.}, \textsc{Jordan, M.}, \textsc{Nowlan, S.} \&
+  \textsc{Hinton, G.} (1991).
+\newblock {Adaptive mixtures of local experts}.
+\newblock \textit{Neural computation} \textbf{3}, 79--87.
+
+\bibitem[{Norets(2010)}]{norets2010approximation}
+\textsc{Norets, A.} (2010).
+\newblock {Approximation of conditional densities by smooth mixtures of
+  regressions}.
+\newblock \textit{The Annals of Statistics} \textbf{38}, 1733--1766.
+
+\bibitem[{Villani et~al.(2009)Villani, Kohn \&
+  Giordani}]{villani2009regression}
+\textsc{Villani, M.}, \textsc{Kohn, R.} \& \textsc{Giordani, P.} (2009).
+\newblock {Regression density estimation using smooth adaptive {Gauss}ian
+  mixtures}.
+\newblock \textit{Journal of Econometrics} \textbf{153}, 155--173.
+
+\end{thebibliography}

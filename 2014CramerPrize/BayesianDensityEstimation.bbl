@@ -1,0 +1,52 @@
+\begin{thebibliography}{10}
+\newcommand{\enquote}[1]{``#1''}
+\expandafter\ifx\csname natexlab\endcsname\relax\def\natexlab#1{#1}\fi
+
+\bibitem[{Casella et~al.(2009)Casella, Gir{\'o}n, Mart{\'\i}nez, and
+  Moreno}]{casella2009consistency}
+Casella, G., Gir{\'o}n, F.~J., Mart{\'\i}nez, M.~L., and Moreno, E. (2009),
+  \enquote{Consistency of Bayesian procedures for variable selection,}
+  \textit{The Annals of Statistics}, 1207--1228.
+
+\bibitem[{Escobar(1994)}]{escobar1994estimating}
+Escobar, M.~D. (1994), \enquote{{Estimating Normal Means with a Dirichlet
+  Process Prior},} \textit{Journal of the American Statistical Association},
+  89, 268.
+
+\bibitem[{Holmes and Mallick(2003)}]{holmes2003generalized}
+Holmes, C.~C. and Mallick, B.~K. (2003), \enquote{{Generalized Nonlinear
+  Modeling With Multivariate Free-Knot Regression Splines},} \textit{Journal of
+  the American Statistical Association}, 98, 352--368.
+
+\bibitem[{Jiang and Tanner(1999)}]{jiang1999approximation}
+Jiang, W. and Tanner, M.~a. (1999), \enquote{{On the approximation rate of
+  hierarchical mixtures-of-experts for generalized linear models.}}
+  \textit{Neural computation}, 11, 1183--98.
+
+\bibitem[{Joe(1997)}]{joe1997multivariate}
+Joe, H. (1997), \textit{Multivariate models and dependence concepts}, Chapman
+  \& Hall, London.
+
+\bibitem[{Kass and Raftery(1995)}]{kass1995bayes}
+Kass, R. and Raftery, A. (1995), \enquote{{Bayes factors},} \textit{Journal of
+  the American Statistical Association}, 90, 773--795.
+
+\bibitem[{Li and Villani(2013)}]{li2013efficient}
+Li, F. and Villani, M. (2013), \enquote{Efficient {B}ayesian Multivariate
+  Surface Regression,} \textit{Scandinavian Journal of Statistics}, 40,
+  706--723.
+
+\bibitem[{Nott and Kohn(2005)}]{nott2005adaptive}
+Nott, D. and Kohn, R. (2005), \enquote{Adaptive sampling for {Bayes}ian
+  variable selection,} \textit{Biometrika}, 92, 747--763.
+
+\bibitem[{Patton(2012)}]{patton2012review}
+Patton, A. (2012), \enquote{A review of copula models for economic time
+  series,} \textit{Journal of Multivariate Analysis}, 110, 4--18.
+
+\bibitem[{Sklar(1959)}]{sklar1959fonctions}
+Sklar, A. (1959), \enquote{Fonctions de répartition à n dimensions et leurs
+  marges,} \textit{Publications de l'Institut de Statistique de L'Université
+  de Paris}, 8, 229--231.
+
+\end{thebibliography}
