@@ -1,4 +1,4 @@
-\documentclass[10pt]{beamer}
+\documentclass[10pt,aspectratio=169]{beamer}
 
 %% Fonts
 \usepackage{multicol}
@@ -8,6 +8,8 @@
 \usepackage{eulervm}
 \usepackage{natbib}
 \usepackage{booktabs}
+\usepackage{amsfonts}
+%\usepackage{multicol}
 %\usefonttheme[onlymath]{serif}
 %\usefonttheme{professionalfonts}
 \usefonttheme{structurebold}
@@ -35,17 +37,19 @@
   urlcolor=SUblue}
 
 
-\title[Dynamical Copula Modeling]{{\textbf{Bayesian covariate-dependent copula modeling
-      with applications in stocks, text sentiments and firm credit risks}}}
+\title[Covariate-Dependent Copula Modeling]{\textbf{Improving forecasting performance
+    using covariate-dependent copula models}}
+
+\author[Yanfei Kang]{%\includegraphics[height=2cm]{cufelogo}\\
+  \vspace{0.5cm}\textbf{Yanfei Kang}
+  \\\vspace{0.3cm}\url{yanfeikang@buaa.edu.cn}\\\url{http://yanfei.site/}}
+
+\institute[SEM.BUAA.EDU.CN]{\footnotesize{\textbf{School of Economics and Management
+      \\Beihang University}}}
 
 
 
-\author[Feng Li]{\includegraphics[height=2cm]{cufelogo}\\
-  \vspace{0.5cm}\textbf{Feng Li}
-  \\\vspace{0.3cm}\url{feng.li@cufe.edu.cn}\\\url{http://feng.li/}}
 
-\institute[SAM.CUFE.EDU.CN]{\footnotesize{\textbf{School of Statistics and
-      Mathematics\\ Central University of Finance and Economics}}}
 \date{}
 
 \begin{document}
@@ -55,19 +59,100 @@
   \titlepage
 \end{frame}
 
-
+\section*{Outline}
 \begin{frame}
-  \frametitle{Collaborators on the series of papers}
-  \begin{itemize}
-  \item Yanfei Kang, Associate Professor, Beihang University, Beijing China.
-  \item Anastasios Panagiotelis, Associate Professor, Monash University, Australia.
-  \item Zhuojing He, PhD student, Central University of Finance and Economics, Beijing
-    China.
-  \end{itemize}
+  \frametitle{Outline}
+  \addtocounter{framenumber}{-1}
+  \tableofcontents
 \end{frame}
 
 
+% \begin{frame}
+%   \frametitle{Collaborators on the series of papers}
+%   \begin{itemize}
+%   \item Yanfei Kang, Associate Professor, Beihang University, Beijing China.
+%   \item Zhuojing He, PhD student, Central University of Finance and Economics, Beijing
+%     China.
+%   \item Anastasios Panagiotelis, Associate Professor, Monash University, Australia.
+
+%     \vspace{2cm} \color{blue} \item [*] Feng Li's research is supported by National
+%     Natural Science Foundation of China.
+
+%   \end{itemize}
+
+
+% \end{frame}
+
+
 \section{Covariate-dependent copula models}
+
+
+\begin{frame}
+  \frametitle{What is a copula?}
+  \begin{itemize}
+  \item The word ``copula'' means \textbf{linking}.
+  \item \textbf{Sklar's theorem}
+
+    Let $H$ be a multi-dimensional distribution function with marginal
+    distribution functions $F_1(x_1),...,F_m(x_m)$. Then there exists a
+    function $C$ (\textbf{copula function}) such that
+    \begin{equation*}
+      \begin{split}
+        H(x_1,...,x_m)= & C(F_1(x_1),...,F_m(x_m))\\
+        =&C\left(\int_{-\infty}^{x_1}f(z_1)dz_1,...,\int_{-\infty}^{x_m}f(z_m)dz_m\right)=C(u_1,...,u_m).
+      \end{split}
+    \end{equation*}
+    Furthermore, if $F_i(x_i)$ are continuous, then $C$ is unique, and the derivative $c(u_1,...,u_m)= \partial^m C(u_1,...,u_m)/(\partial u_1...
+    \partial u_m)$ is the \textbf{copula density}.
+
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Measuring correlation and tail dependence}
+  \framesubtitle{Kendall's $\tau$ and tail-dependences}
+  \begin{itemize}
+  \item The \textbf{Kendall's $\tau$} can be written in terms of copula function:
+    \begin{equation*}
+      \begin{split}
+        \tau = & 4 \int \int F(x_1, x_2)dF(x_1,x_2)-1 = 4 \int \int C(u_1, u_2)dC(u_1,u_2)-1. \\
+      \end{split}
+    \end{equation*}
+
+  \item As well as the bivariate lower and upper \textbf{tail dependences}
+    \begin{equation*}
+      \begin{split}
+        \lambda_L = & \lim \limits_{u \to 0^{+}} Pr(X_1< F_1^{-1}(u)| X_2<F_2^{-1}(u))= \lim \limits_{u \to 0^{+}} \frac{C(u,u)}{u},\\
+        \lambda_U=&\lim \limits_{u \to 1^{-}} Pr(X_1> F_1^{-1}(u)|
+        X_2>F_2^{-1}(u))= \lim \limits_{u \to 1^{-}} \frac{1-C(u,u)}{1-u}.\\
+      \end{split}
+    \end{equation*}
+
+  \item Some facts:
+    \begin{itemize}
+    \item The Kendall's $\tau$ is invariant w.r.t. \textbf{strictly} increasing transformations.
+    \item For all copulas in the elliptical class (Gaussian, \emph{t},...),
+      $\tau = \frac{2}{\pi}arcsin(\rho)$.
+    \item The Gaussian copula has zero tail dependence.
+    \item The  student \texttt{t} copula has asymptotic upper tail dependence even for negative
+      and zero correlations. The tail dependence decreases when degrees of
+      freedom increases.
+    \end{itemize}
+  \end{itemize}
+\end{frame}
+
+\begin{frame}[plain]
+  % \frametitle{The covariate-contingent copula model}
+  % \framesubtitle{The dependence and correlation of Joe-Clayton copula}
+  \begin{figure}
+    \centering
+    \vspace{-0.35cm}
+    \includegraphics[width=0.26\textwidth]{BB7_tau-lamba}\includegraphics[width=0.3\textwidth]{tau-contour}\\
+    \includegraphics[width=\textwidth]{BB7Scatter}
+  \end{figure}
+\end{frame}
+
+
 \begin{frame}
   \frametitle{Covariate-dependent copula models}
   \framesubtitle{The Joe-Clayton copula example}
@@ -101,7 +186,7 @@
   % \item \textbf{The motivation} i) The interpretation of correlation and tail-dependence.
   %   ii) Dynamical modeling tail-dependence and correlation.
 
-  \item \textbf{Reparametrization}: We reparameterize copula as a function of
+  \item \textbf{Reparametrization}: We reparameterize the copula as a function of
     tail-dependence and/or Kendall's tau $C(\bm{u},\lambda_L,\tau)$.
 
   \item \textbf{Link with covariates}: All copula features in the $k$:th and $l$:th margins can be connected with
@@ -124,18 +209,19 @@
 
     \begin{itemize}
     \item Mixture of asymmetric student's-\emph{t} distributions.
-    \item GARCH models stochastic volatility (SV) models.
+    \item GARCH models
+    \item stochastic volatility (SV) models.
     \item Poisson regression models.
     \end{itemize}
 
   \end{itemize}
 \end{frame}
 
+\section{The Bayesian scheme}
 
 
-\begin{frame}[allowframebreaks]
-  \frametitle{The covariate-contingent copula model}
-  \framesubtitle{The Bayesian approach}
+\begin{frame}%[allowframebreaks]
+  \frametitle{The Bayesian approach}
   \begin{itemize}
 
   \item \textbf{The log Posterior}
@@ -167,7 +253,6 @@
   \end{itemize}
 \end{frame}
 
-\section{The Bayesian Scheme}
 
 \begin{frame}
   \frametitle{The Bayesian approach}
@@ -195,11 +280,13 @@
   \end{itemize}
 \end{frame}
 
-\begin{frame}[allowframebreaks]
-  \frametitle{Sampling the posterior with an efficient MCMC scheme}
+\begin{frame}%[allowframebreaks]
+  \frametitle{The Bayesian approach}
+  \framesubtitle{Sampling the posterior with an efficient MCMC scheme}
   \begin{itemize}
   \item We update all the parameters \textbf{jointly} by using tailored
-    Metropolis-Hastings within Gibbs.
+    Metropolis-Hastings within Gibbs. This is more efficient compared to the two-stage
+    inference according to our study.
 
   \item \textbf{Taming the Beast:} the analytical gradients require the derivative for the
     copula density and marginal densities which can be conveniently decomposed via the
@@ -240,17 +327,18 @@
 \end{frame}
 
 
-\begin{frame}
-  \frametitle{Why not two-stage approach?}
-  \begin{itemize}
-  \item The asymptotic relative efficiency of the two-stage estimation procedure depends
-    on how close the copula is to the Fr\'echet bounds
-    {\citep{joe2005asymptotic}}.
-  \item The two-stage approach in estimating the multivariate DCC GARCH model is
-    consistent but not fully efficient due to the limited information provided by the
-    estimators {\citep{engle2001theoretical}}.
-  \end{itemize}
-\end{frame}
+% \begin{frame}
+%   \frametitle{The Bayesian approach}
+%   \framesubtitle{Why not two-stage approach?}
+%   \begin{itemize}
+%   \item The asymptotic relative efficiency of the two-stage estimation procedure depends
+%     on how close the copula is to the Fr\'echet bounds
+%     {\citep{joe2005asymptotic}}.
+%   \item The two-stage approach in estimating the multivariate DCC GARCH model is
+%     consistent but not fully efficient due to the limited information provided by the
+%     estimators {\citep{engle2001theoretical}}.
+%   \end{itemize}
+% \end{frame}
 
 \begin{frame}
   \frametitle{Model Comparison}
@@ -271,10 +359,161 @@
 \end{frame}
 
 
-\begin{frame}[allowframebreaks]
-  \frametitle{References}
-  \bibliography{References,full}
-  \bibliographystyle{asa}
+\begin{frame}
+  \frametitle{Simulation}
+
+  \begin{figure}[!h]
+    \centering
+    \includegraphics[width=0.8\textwidth]{LPDSComp}
+  \end{figure}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Simulation}
+
+  \begin{figure}[!h]
+    \centering
+    \includegraphics[width=0.48\textwidth]{DGP}
+  \end{figure}
+\end{frame}
+
+
+\begin{frame}
+  \frametitle{Improving forecasting performance with covariate-dependent tail-dependence}
+
+  \framesubtitle{Log predictive density score comparison}
+  \begin{table}
+  % \caption{A model comparison with the LPS. Note that variable selection is used in all
+  %   situations in the margins. $C(CD.)$ indicates the covariate-contingent structure used
+  %   in the reparameterized copula component, and $C(Const.)$ means only constant
+  %   tail-dependence and correlation are estimated in the copula component. Note that in
+  %   principle, the global LPS should be equal to the summation of LPSs in the marginal and
+  %   copula components. Due to MCMC numerical errors, the results are not exactly the
+  %   same. The numerical standard errors are all below one in all LPSs. The LPS for the
+  %   Joe-Clayton copula $C(\lambda_L,\tau)$ is the same as $C(\lambda_L,\lambda_U)$.}
+  \label{tab:lpds}
+  \begin{center}
+     \resizebox{0.45\columnwidth}{!}{%
+    \begin{tabular}{llrrrr}
+      \toprule
+
+      &&\multicolumn{4}{c}{Reparameterized Copulas}\\
+      \cline{3-6}
+      &&Joe-Clayton&Clayton&Gumbel&\emph{t}-Copula\\
+
+      Margins&\multicolumn{1}{c}{LPS decomposition}&&&&\\
+      % \multicolumn{2}{c}{ComponentsCombination}
+      % \multicolumn{2}{c}{}&$(\lambda_L,~\lambda_U)$&$(\tau)$&$(\tau)$&$(\tau,~\nu)$\\
+
+      \midrule
+
+      \multicolumn{6}{c}{(\emph{Joint modeling approach})}\\
+
+      SPLIT-\emph{t}&$M_1$&$-1743.12$&$-1741.04$&$-1754.36$&$-1741.47$\\
+      &$M_2$&$-1435.98$&$-1468.25$&$-1485.68$&$-1430.07$\\
+      &$C(CD.)$&$837.50$&$690.22$&$797.78$&${792.14}$\\
+      % \cline{1-2}
+      &$Global$&${-2344.12}$&$-2523.75$&$-2448.14$&$-2380.12$\\
+      \\
+
+      SPLIT-\emph{t}&$M_1$&$-1747.99$&$-1747.15$&$-1754.61$&$-1782.37$\\
+      &$M_2$&$-1434.22$&$-1449.95$&$-1446.84$&$-1658.09$\\
+      &$C(Const.)$&$779.14$&$654.46$&$780.33$&${703.96}$\\
+      % \cline{1-2}
+      &$Global$&${-2411.06}$&$-2547.14$&$-2421.15$&$-2736.49$\\
+      \midrule
+
+      \multicolumn{6}{c}{(\emph{Two-stage modeling approach})}\\
+
+      SPLIT-\emph{t}&$M_1$&$-1740.10$&$-1741.05$&$-1737.73$&$-1741.47$\\
+      &$M_2$&$-1428.39$&$-1436.63$&$-1427.83$&$-1433.41$\\
+      &$C(CD.)$&$819.63$&$694.84$&$781.39$&$788.22$\\
+      % \cline{1-2}
+      &$Global$&${-2346.61}$&$-2483.93$&$-2392.13$&$-2389.41$\\
+
+      \\
+      GARCH(1,1)&$M_1$&$-1948.07$&$-1948.07$&$-1948.07$&$-1948.07$\\
+      &$M_2$&$-1673.85$&$-1673.85$&$-1673.85$&$-1673.85$\\
+      &$C(CD.)$&$702.35$&$530.48$&$810.39$&$791.55$\\
+      % \cline{1-2}
+      &$global$&$-2919.57$&$$-3091.44$$&$-2811.53$&$-2830.37$\\
+      \\
+      SV&$M_1$&$-2166.90$&$-2154.18$&$-2168.17$&$-2179.36$\\
+      &$M_2$&$-1811.36$&$-1844.57$&$-1808.61$&$-1808.24$\\
+      &$C(CD.)$&$964.37$&$698.30$&$1012.10$&$1053.19$\\
+      % \cline{1-2}
+      &$Global$&$-3013.90$&$-3300.46$&$-2964.68$&$-2934.40$\\
+
+      \midrule
+      \multicolumn{6}{c}{(\emph{Bivariate volatility models})}\\
+
+      \multicolumn{2}{l}{Bivariate DCC-GARCH}&$-2730.78$&\\
+      \multicolumn{2}{l}{Bivariate SV}&$-2999.63$&\\
+      \bottomrule
+    \end{tabular}
+     }
+  \end{center}
+
+\end{table}
+
+\end{frame}
+
+\section{Improving forecasting performance with covariate-dependent tail-dependence}
+
+
+
+\begin{frame}
+  \frametitle{Improving forecasting performance with covariate-dependent tail-dependence}
+  \framesubtitle{The S\&P 100 and S\&P 600 and their empirical copulas}
+ \begin{figure}[!h]
+    \centering
+    \includegraphics[width=0.5\textwidth]{SP100-SP600}\\
+    \includegraphics[width=0.5\textwidth]{SP100-SP600-empCopula}
+  \end{figure}
+\end{frame}
+
+\begin{frame}
+  \frametitle{}
+
+  \begin{figure}[!h]
+    \frametitle{Contour plots of the posterior densities}
+    \centering
+    \includegraphics[width=0.45\textwidth]{Contour-Post}
+  \end{figure}
+
+\end{frame}
+
+
+
+\begin{frame}
+  \frametitle{Working in progress }
+
+  \begin{itemize}
+  \item Modeling multivariate covariate-dependent structure via the vine copula.
+  \item Looking into more efficient inference techniques, VB?
+  \item Including probabilistic topic model to model the texts margins.
+  \end{itemize}
+\end{frame}
+
+
+% \begin{frame}[allowframebreaks]
+%   \frametitle{References}
+%   \bibliography{References,full}
+%   \bibliographystyle{asa}
+% \end{frame}
+\begin{frame}[plain]
+  \addtocounter{framenumber}{-1}
+  \begin{center}
+    {\color{SUblue} \textbf{\Huge Thank you!}}
+    \vspace{1cm}
+
+    \url{yanfeikang@buaa.edu.cn}
+
+    \vspace{1cm}
+
+    \url{http://yanfei.site/}
+
+  \end{center}
 \end{frame}
 
 \end{document}
