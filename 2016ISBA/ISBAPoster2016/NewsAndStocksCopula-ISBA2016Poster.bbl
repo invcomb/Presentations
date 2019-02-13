@@ -1,0 +1,51 @@
+\begin{thebibliography}{9}
+\newcommand{\enquote}[1]{``#1''}
+\expandafter\ifx\csname natexlab\endcsname\relax\def\natexlab#1{#1}\fi
+
+\bibitem[{Blei and Lafferty(2006)}]{blei2006dynamic}
+Blei, D.~M. and Lafferty, J.~D. (2006), \enquote{Dynamic topic models,} in
+  \textit{Proceedings of the 23rd international conference on Machine
+  learning}, ACM, pp. 113--120.
+
+\bibitem[{Engle and Sheppard(2001)}]{engle2001theoretical}
+Engle, R.~F. and Sheppard, K. (2001), \enquote{{Theoretical and Empirical
+  properties of Dynamic Conditional Correlation Multivariate GARCH},}
+  \textit{Working Paper}, 1--46.
+
+\bibitem[{Joe(2005)}]{joe2005asymptotic}
+Joe, H. (2005), \enquote{{Asymptotic efficiency of the two-stage estimation
+  method for copula-based models},} \textit{Journal of Multivariate Analysis},
+  94, 401--419.
+
+\bibitem[{Joe et~al.(2010)Joe, Li, and Nikoloulopoulos}]{joe2010tail}
+Joe, H., Li, H., and Nikoloulopoulos, A.~K. (2010), \enquote{{Tail dependence
+  functions and vine copulas},} \textit{Journal of Multivariate Analysis}, 101,
+  252--270.
+
+\bibitem[{Li(2015)}]{li2013modeling}
+Li, F. (2015), \enquote{Modeling covariate-contingent correlation and
+  tail-dependence with copulas,} \textit{Jornal of Business and Economic
+  Statistics}, forthcoming.
+
+\bibitem[{Li et~al.(2010)Li, Villani, and Kohn}]{li2010flexible}
+Li, F., Villani, M., and Kohn, R. (2010), \enquote{Flexible modeling of
+  conditional distributions using smooth mixtures of asymmetric student t
+  densities,} \textit{Journal of Statistical Planning and Inference}, 140,
+  3638--3654.
+
+\bibitem[{Panagiotelis et~al.(2012)Panagiotelis, Czado, and
+  Joe}]{panagiotelis2012pair}
+Panagiotelis, A., Czado, C., and Joe, H. (2012), \enquote{Pair copula
+  constructions for multivariate discrete data,} \textit{Journal of the
+  American Statistical Association}, 107, 1063--1072.
+
+\bibitem[{Smith and Khaled(2012)}]{smith2012estimation}
+Smith, M. and Khaled, M. (2012), \enquote{Estimation of Copula Models with
+  Discrete Margins via {B}ayesian Data Augmentation,} \textit{Journal of the
+  American Statistical Association}, 107, 290--303.
+
+\bibitem[{Villani et~al.(2012)Villani, Kohn, and Nott}]{villani2012generalized}
+Villani, M., Kohn, R., and Nott, D.~J. (2012), \enquote{Generalized Smooth
+  Finite Mixtures,} \textit{Journal of Econometrics}, 171, 121--133.
+
+\end{thebibliography}

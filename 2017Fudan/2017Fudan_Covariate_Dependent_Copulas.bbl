@@ -1,0 +1,35 @@
+\begin{thebibliography}{6}
+\newcommand{\enquote}[1]{``#1''}
+\expandafter\ifx\csname natexlab\endcsname\relax\def\natexlab#1{#1}\fi
+
+\bibitem[{Huang et~al.(2009)Huang, Lee, Liang, and Lin}]{huang2009estimating}
+Huang, J.-J., Lee, K.-J., Liang, H., and Lin, W.-F. (2009), \enquote{Estimating
+  value at risk of portfolio by conditional copula-{GARCH} method,}
+  \textit{Insurance: Mathematics and economics}, 45, 315--324.
+
+\bibitem[{Joe(1997)}]{joe1997multivariate}
+Joe, H. (1997), \textit{Multivariate models and dependence concepts}, Chapman
+  \& Hall, London.
+
+\bibitem[{Li et~al.(2010)Li, Villani, and Kohn}]{li2010flexible}
+Li, F., Villani, M., and Kohn, R. (2010), \enquote{Flexible modeling of
+  conditional distributions using smooth mixtures of asymmetric student t
+  densities,} \textit{Journal of Statistical Planning and Inference}, 140,
+  3638--3654.
+
+\bibitem[{Lucas et~al.(2014)Lucas, Schwaab, and Zhang}]{lucas2014conditional}
+Lucas, A., Schwaab, B., and Zhang, X. (2014), \enquote{Conditional euro area
+  sovereign default risk,} \textit{Journal of Business \& Economic Statistics},
+  32, 271--284.
+
+\bibitem[{Patton(2006)}]{patton2006modelling}
+Patton, A. (2006), \enquote{Modelling Asymmetric Exchange Rate Dependence,}
+  \textit{International economic review}, 47, 527--556.
+
+\bibitem[{Siburg et~al.(2015)Siburg, Stoimenov, and
+  Wei{\ss}}]{siburg2015forecasting}
+Siburg, K.~F., Stoimenov, P., and Wei{\ss}, G.~N. (2015), \enquote{Forecasting
+  portfolio-Value-at-Risk with nonparametric lower tail dependence estimates,}
+  \textit{Journal of Banking \& Finance}, 54, 129--140.
+
+\end{thebibliography}
