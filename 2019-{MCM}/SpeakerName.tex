@@ -1,0 +1,44 @@
+%  LaTeX template for abstract submission for MCM 2019
+%
+%  If this paper is for a special (invited) session, put the name of session organizer
+%  (first name, family name), and the session title.
+%  For plenary talks, put ``Plenary Talk'' for the session title, and Zdravko Botev for the organizer.
+%
+\insession{Feng}{Li}{Monte Carlo Methods for Large Dependent Data}
+
+% First name and name of the speaker.
+\speaker{Feng}{Li}%
+%  (put no space here)
+% Title of the talk, capitalized.
+\title{Bayesian high-dimensional covariate-dependent copula modeling with application to
+stocks and text sentiments}
+
+% For each author, give the first name, family name, affiliation, and email.
+% Ideally, the affiliation and email should fit on a single line.
+% No need to put the full snail mailing address.
+\author{Feng}{Li}{Central University of Finance and Economics, China}{feng.li@cufe.edu.cn}
+
+
+
+% Type your abstract here.
+\abstract{
+
+  Tail-dependence modeling with flexible marginal and copula distributions is widely used
+  in financial time series. We extend the covariate dependent copula model of Li and Kang
+  (2018) to vine copulas and we allow all pair copula parameters including those that
+  describe conditional dependence to be functions of linear predictors. Although vine
+  decompositions are not unique, fast heuristic algorithms exist for selecting vine
+  structures.  The implementation of these algorithms with covariate dependent copula
+  parameters is not straightforward. Instead for our empirical studies we exploit the
+  structure of the data themselves. We update the copula component together with the
+  marginal components jointly. The joint posterior is not tractable and we use a
+  stochastic gradient MCMC within Gibbs sampler, i.e. a Gibbs sampler is used for updating
+  the joint parameter components, with each conditional parameter block updated by
+  stochastic gradient MCMC algorithm. Our model is applied to financial stock returns with
+  text sentiments data.
+
+%  If you have refererences, put them here in a format like below.
+%  This can be obtained using BiBTeX with the bib style plain.bst.
+%  Note that this must be placed inside the abstract.
+
+}  % End of abstract.
