@@ -1,0 +1,124 @@
+\begin{thebibliography}{xx}
+
+\harvarditem{Assimakopoulos \harvardand\
+  Nikolopoulos}{2000}{Assimakopoulos2000The}
+Assimakopoulos, V. \harvardand\ Nikolopoulos, K.  \harvardyearleft
+  2000\harvardyearright , `The theta model: a decomposition approach to
+  forecasting', {\em International Journal of Forecasting} {\bf
+  16}(4),~521--530.
+
+\harvarditem[Baydogan et~al.]{Baydogan, Runger \harvardand\
+  Tuv}{2013}{baydogan2013bag}
+Baydogan, M.~G., Runger, G. \harvardand\ Tuv, E.  \harvardyearleft
+  2013\harvardyearright , `A bag-of-features framework to classify time
+  series', {\em IEEE transactions on pattern analysis and machine intelligence}
+  {\bf 35}(11),~2796--2802.
+
+\harvarditem[Cleveland et~al.]{Cleveland, Cleveland, McRae \harvardand\
+  Terpenning}{1990}{cleveland1990stl}
+Cleveland, R.~B., Cleveland, W.~S., McRae, J.~E. \harvardand\ Terpenning, I.
+  \harvardyearleft 1990\harvardyearright , `{STL}: A seasonal-trend
+  decomposition procedure based on loess', {\em Journal of Official Statistics}
+  {\bf 6}(1),~3--73.
+
+\harvarditem[Deng et~al.]{Deng, Dong, Socher, Li, Li \harvardand\
+  Li}{2009}{Deng2009ImageNet}
+Deng, J., Dong, W., Socher, R., Li, L.~J., Li, K. \harvardand\ Li, F.~F.
+  \harvardyearleft 2009\harvardyearright , Imagenet: A large-scale hierarchical
+  image database, {\em in} `IEEE Conference on Computer Vision and Pattern
+  Recognition'.
+
+\harvarditem[Eckmann et~al.]{Eckmann, Kamphorst \harvardand\
+  Ruelle}{1987}{eckmann1987recurrence}
+Eckmann, J.-P., Kamphorst, S.~O. \harvardand\ Ruelle, D.  \harvardyearleft
+  1987\harvardyearright , `Recurrence plots of dynamical systems', {\em EPL
+  (Europhysics Letters)} {\bf 4}(9),~973.
+
+\harvarditem{Fulcher}{2018}{fulcher2018feature}
+Fulcher, B.~D.  \harvardyearleft 2018\harvardyearright , Feature-based
+  time-series analysis, {\em in} `Feature engineering for machine learning and
+  data analytics', CRC Press, pp.~87--116.
+
+\harvarditem[Hatami et~al.]{Hatami, Gavet \harvardand\
+  Debayle}{2017}{hatami2017bag}
+Hatami, N., Gavet, Y. \harvardand\ Debayle, J.  \harvardyearleft
+  2017\harvardyearright , `Bag of recurrence patterns representation for
+  time-series classification', {\em Pattern Analysis and Applications}
+  pp.~1--11.
+
+\harvarditem{Hyndman \harvardand\ Khandakar}{2008}{HK08}
+Hyndman, R.~J. \harvardand\ Khandakar, Y.  \harvardyearleft
+  2008\harvardyearright , `Automatic time series forecasting: the forecast
+  package for {R}', {\em Journal of Statistical Software} {\bf 26}(3),~1--22.
+
+\harvarditem[Hyndman et~al.]{Hyndman, Koehler, Snyder \harvardand\
+  Grose}{2017}{Hyndman2017A}
+Hyndman, R.~J., Koehler, A.~B., Snyder, R.~D. \harvardand\ Grose, S.
+  \harvardyearleft 2017\harvardyearright , `A state space framework for
+  automatic forecasting using exponential smoothing methods', {\em
+  International Journal of Forecasting} {\bf 18}(3),~439--454.
+
+\harvarditem[Hyndman et~al.]{Hyndman, Wang \harvardand\ Laptev}{2015}{cikm2015}
+Hyndman, R.~J., Wang, E. \harvardand\ Laptev, N.  \harvardyearleft
+  2015\harvardyearright , Large-scale unusual time series detection, {\em in}
+  `Proceedings of the IEEE International Conference on Data Mining', Atlantic
+  City, NJ, USA.
+\newblock 14--17 November 2015.
+
+\harvarditem[Hyndman et~al.]{Hyndman, Kang, Montero-Manso, Talagala, Wang, Yang
+  \harvardand\ O'Hara-Wild}{2019}{Hyndman2019}
+Hyndman, R., Kang, Y., Montero-Manso, P., Talagala, T., Wang, E., Yang, Y.
+  \harvardand\ O'Hara-Wild, M.  \harvardyearleft 2019\harvardyearright , {\em
+  tsfeatures: Time Series Feature Extraction}.
+\newblock R package version 1.0.1.
+\newline\harvardurl{https://CRAN.R-project.org/package=tsfeatures}
+
+\harvarditem[Kang et~al.]{Kang, Hyndman \harvardand\ Li}{2019}{kang2019gratis}
+Kang, Y., Hyndman, R.~J. \harvardand\ Li, F.  \harvardyearleft
+  2019\harvardyearright , `Gratis: Generating time series with diverse and
+  controllable characteristics', {\em arXiv preprint arXiv:1903.02787} .
+
+\harvarditem[Kang et~al.]{Kang, Hyndman \harvardand\
+  Smith-Miles}{2017}{kang2017visualising}
+Kang, Y., Hyndman, R.~J. \harvardand\ Smith-Miles, K.  \harvardyearleft
+  2017\harvardyearright , `Visualising forecasting algorithm performance using
+  time series instance spaces', {\em International Journal of Forecasting} {\bf
+  33}(2),~345--358.
+
+\harvarditem[Razavian et~al.]{Razavian, Azizpour, Sullivan \harvardand\
+  Carlsson}{2014}{Razavian2014CNN}
+Razavian, A.~S., Azizpour, H., Sullivan, J. \harvardand\ Carlsson, S.
+  \harvardyearleft 2014\harvardyearright , `Cnn features off-the-shelf: An
+  astounding baseline for recognition'.
+
+\harvarditem{Simonyan \harvardand\ Zisserman}{2014}{Simonyan2014Very}
+Simonyan, K. \harvardand\ Zisserman, A.  \harvardyearleft 2014\harvardyearright
+  , `Very deep convolutional networks for large-scale image recognition', {\em
+  Computer Science} .
+
+\harvarditem{Szegedy, Ioffe \harvardand\ Vanhoucke}{2016}{Szegedy2016Inception}
+Szegedy, C., Ioffe, S. \harvardand\ Vanhoucke, V.  \harvardyearleft
+  2016\harvardyearright , `Inception-v4, inception-resnet and the impact of
+  residual connections on learning'.
+
+\harvarditem{Szegedy, Vanhoucke, Ioffe, Shlens \harvardand\
+  Wojna}{2016}{Szegedy2016Rethinking}
+Szegedy, C., Vanhoucke, V., Ioffe, S., Shlens, J. \harvardand\ Wojna, Z.
+  \harvardyearleft 2016\harvardyearright , Rethinking the inception
+  architecture for computer vision, {\em in} `Computer Vision and Pattern
+  Recognition'.
+
+\harvarditem[Wang et~al.]{Wang, Liu, She, Nahavandi \harvardand\
+  Kouzani}{2013}{wang2013bag}
+Wang, J., Liu, P., She, M.~F., Nahavandi, S. \harvardand\ Kouzani, A.
+  \harvardyearleft 2013\harvardyearright , `Bag-of-words representation for
+  biomedical time series classification', {\em Biomedical Signal Processing and
+  Control} {\bf 8}(6),~634--644.
+
+\harvarditem{Wang \harvardand\ Oates}{2015}{wang2015Imaging}
+Wang, Z. \harvardand\ Oates, T.  \harvardyearleft 2015\harvardyearright ,
+  Imaging time-series to improve classification and imputation, {\em in}
+  `Proceedings of the 24th International Conference on Artificial
+  Intelligence', AAAI Press, pp.~3939--3945.
+
+\end{thebibliography}
